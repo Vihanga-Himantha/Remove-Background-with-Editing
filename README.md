@@ -1,11 +1,21 @@
 # Remove-Background-with-Editing
 
-A web-based application for removing backgrounds from images using various AI models. Built with Gradio, OpenCV, and RemBG.
+A web-based application for removing backgrounds from images and adding customized text overlays. Built with Gradio, OpenCV, and RemBG.
 
 ## Features
 
 - Multiple AI models for background removal
-- Support for different output types (Default/Mask only)
+- Text overlay with customizable options:
+  - Multiple font choices (Arial, Times New Roman, Courier New)
+  - Font size and color customization
+  - Bold text support
+  - Precise text positioning using percentage coordinates
+- Background options:
+  - Transparent background
+  - Keep original background
+  - Upload custom background
+- Advanced edge refining with Alpha Matting
+- Support for different output types (Foreground + Text/Mask only)
 - Interactive web interface
 - Special SAM model support with coordinate selection
 - Support for various image formats
@@ -20,7 +30,6 @@ A web-based application for removing backgrounds from images using various AI mo
 - isnet-general-use
 - isnet-anime
 - sam
-- birefnet variants (general, lite, portrait, etc.)
 
 ## Setup Instructions
 
@@ -43,7 +52,7 @@ A web-based application for removing backgrounds from images using various AI mo
 
 3. Install required dependencies:
    ```bash
-   pip install gradio opencv-python rembg
+   pip install gradio opencv-python rembg Pillow
    ```
 
 ## Usage
@@ -54,26 +63,37 @@ A web-based application for removing backgrounds from images using various AI mo
    python app.py
    ```
 
-2. Open your web browser and navigate to the provided URL (typically http://localhost:7860)
+2. Open your web browser and navigate to the provided URL (typically http://127.0.0.1:7860)
 
 3. Upload an image using the interface
 
-4. Select your desired model and output type
+4. Configure background removal:
 
-5. If using the SAM model, click on the image to set coordinates
+   - Select your desired model
+   - Choose output type (Foreground + Text/Mask only)
+   - Enable Advanced Edge Refining if needed
+   - If using the SAM model, click on the image to set coordinates
 
-6. Click "Process Image" to remove the background
+5. Choose background options:
 
-## Example Images
+   - Transparent background
+   - Keep original image
+   - Upload a custom background
 
-The application comes with example images:
+6. Customize text (optional):
 
-- lion.png
-- girl.jpg
-- anime-girl.jpg
+   - Enter your text
+   - Select font, size, and color
+   - Toggle bold option
+   - Adjust text position using X% and Y% sliders
+
+7. Click "Process Image" to generate the final image
 
 ## Notes
 
 - The first run may take some time as it downloads the required AI models
-- Output images are saved as 'output.png' in the project directory
-- Input images are temporarily saved as 'input.png'
+- Font availability depends on your system fonts
+- Advanced Edge Refining (Alpha Matting) provides cleaner edges but increases processing time
+- Text positioning is based on the top-left corner of the text box
+- The interface provides real-time preview of your settings
+- All processing is done locally on your machine
